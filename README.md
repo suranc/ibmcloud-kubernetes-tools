@@ -1,6 +1,6 @@
 # IBM Cloud Kubernetes Tools
 
-This repo contains some tools to make dealing with ibmcloud kubernetes clusters easier.
+This repo contains some tools to simplify connecting kubectl to an ibmcloud kubernetes clusters.
 
 ## Images/
 
