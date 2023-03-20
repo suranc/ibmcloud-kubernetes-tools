@@ -5,3 +5,4 @@ RUN cd /tmp && \
     tar -xzf /tmp/IBM_Cloud_CLI_2.13.0_amd64.tar.gz && \
     /tmp/Bluemix_CLI/install && \
     rm -rf /tmp/Bluemix_CLI /tmp/IBM_Cloud *
+RUN ibmcloud plugin install ks
