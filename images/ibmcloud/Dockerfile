@@ -6,3 +6,5 @@ RUN cd /tmp && \
     /tmp/Bluemix_CLI/install && \
     rm -rf /tmp/Bluemix_CLI /tmp/IBM_Cloud *
 RUN ibmcloud plugin install ks
+RUN apk add curl --no-cache
+RUN cd /usr/local/bin/ && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && chmod +x kubectl
