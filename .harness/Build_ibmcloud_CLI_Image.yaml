@@ -1,0 +1,41 @@
+pipeline:
+  name: Build ibmcloud CLI Image
+  identifier: Build_ibmcloud_CLI_Image
+  projectIdentifier: Hubot
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.suranc_Account_Level
+        repoName: ibmcloud-kubernetes-tools
+        build: <+input>
+  stages:
+    - stage:
+        name: Build Image and tag as latest
+        identifier: Build_Image_and_tag_as_latest
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: account.sacluster
+              namespace: chris-builds
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: account.Account_Level_suranc_GitHub_Docker_Registry
+                    repo: ghcr.io/suranc/ibmcloud-cli
+                    tags:
+                      - latest
+                    dockerfile: images/ibmcloud/Dockerfile
+                    context: images/ibmcloud/
